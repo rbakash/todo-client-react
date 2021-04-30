@@ -118,7 +118,6 @@ function App(props) {
 
     todoListService.addTask(newTask).then((response) => {
       newTask.id = response.data.data['insertId'];
-      console.log(newTask);
       // Update the state
       setTasks([...tasks, newTask]);
     });
