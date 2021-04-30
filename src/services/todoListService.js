@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const apiBaseUrl = "http://localhost:8080";
+// Local server endpoint
+// const apiBaseUrl = "http://localhost:8080";
+// Google cloud server endpoint
+const apiBaseUrl ="http://35.209.43.217/api/v1";
 
 const TodoListService = {
   getAllTodoTasks: function getAllTodoTasks() {
