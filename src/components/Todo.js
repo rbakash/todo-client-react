@@ -17,11 +17,11 @@ export default function Todo(props) {
             <input id={props.id} className="todo-text" type="text" value={newName} onChange={handleChange} />
           </div>
           <div className="btn-group">
-            <button type="button" className="btn todo-cancel" onClick={() => setEditing(false)}>
+            <button type="button" className="btn todo-cancel fs-15" onClick={() => setEditing(false)}>
               Cancel
               <span className="visually-hidden">renaming {props.title}</span>
             </button>
-            <button type="submit" className="btn btn__primary todo-edit" >
+            <button type="submit" className="btn btn__primary todo-edit fs-15" >
               Save
               <span className="visually-hidden">new name for {props.title}</span>
             </button>
@@ -39,10 +39,10 @@ export default function Todo(props) {
             onChange={() => props.toggleTaskCompleted(props.id)}
           />
           <label className="todo-label">{props.title}</label>
-          <button type="button mr-2" className="btn" onClick={() => setEditing(true)}>
+          <button type="button mr-2" className="btn fs-15" onClick={() => setEditing(true)}>
             Edit
           </button>
-          <button type="button" className="btn btn__danger" onClick={() => props.deleteTask(props.id)}>
+          <button type="button " className="btn btn__danger fs-15" onClick={() => props.deleteTask(props.id)}>
             Delete
           </button>
         </div>
