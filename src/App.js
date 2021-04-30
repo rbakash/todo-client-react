@@ -17,7 +17,7 @@ const FILTER_MAP = {
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 function App(props) {
-  // Tasks - contains list of the all the To do's and setTasks is the function to update it 
+  // Tasks - contains list of the all the To do's and setTasks is the function to update it
   const [tasks, setTasks] = useState(props.tasks);
   // Set the default filter as ALL
   const [filter, setFilter] = useState("All");
@@ -73,7 +73,7 @@ function App(props) {
     // Set the updated task
     setTasks(editedTaskList);
   }
-  
+
   // Component mount just like ngOnit in angular
   useEffect(() => {
     // Fetch all the todo's and set the state
@@ -114,11 +114,16 @@ function App(props) {
   // Handle adding of the new task event
   function addTask(name) {
     // Construct the Object from the given name
-    const newTask = { title: name, isCompleted: 0 };
-    // Update the state
-    setTasks([...tasks, newTask]);
+    let newTask = { title: name, isCompleted: 0 };
+
+    todoListService.addTask(newTask).then((response) => {
+      newTask.id = response.data.data['insertId'];
+      console.log(newTask);
+      // Update the state
+      setTasks([...tasks, newTask]);
+    });
+
     // Update the server
-    todoListService.addTask(newTask).then((response) => console.log(response));
   }
   // Render the App component
   return (
