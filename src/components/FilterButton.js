@@ -1,5 +1,6 @@
 import React from "react";
 
+// Filter button component
 function FilterButton(props) {
   return (
     <button

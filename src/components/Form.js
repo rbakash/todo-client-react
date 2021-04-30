@@ -1,25 +1,30 @@
+// Contains the Form component handles addding of the new Item to the list
 import React, { useState } from "react";
 
 function Form(props) {
+  
+  // title holds the title of the new to do to be added
   const [title, setTitle] = useState("");
 
+  // Handles the input chnage in the new task input text box
   function handleChange(e) {
-    console.log(title);
     setTitle(e.target.value);
   }
 
+  // Handles the form submission of the new tasks
   function handleSubmit(e) {
+    // Prevent the default behavior of the page reload after form submission
     e.preventDefault();
-    console.log("Inside the handle");
-    // Place your add item to the list
-    if(title){
-        // console.log(name);
-        props.addTask(title);
-        setTitle("");
+    // Basic simple check to ignore adding the empty title
+    if (title) {
+      //Place your add item to the list
+      props.addTask(title);
+      // Reset the title after adding the task to the state
+      setTitle("");
     }
-    
   }
 
+  // Render the Form component
   return (
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">

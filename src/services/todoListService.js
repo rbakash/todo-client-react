@@ -2,12 +2,20 @@ import axios from "axios";
 
 const apiBaseUrl = "http://localhost:8080";
 
-export function getList() {
-    return fetch('http://35.208.206.47/api/v1/add')
-      .then(data => data.json())
-  }
+const TodoListService = {
+  getAllTodoTasks: function getAllTodoTasks() {
+    return axios.get(`${apiBaseUrl}/tasks`);
+  },
 
-  export function updateItem(itemId){
-    return axios
-    .put(`${apiBaseUrl}/item/${id}`, task)
-  }
+  updateTask: function updateTask(taskId, task) {
+    return axios.put(`${apiBaseUrl}/task/${taskId}`, task);
+  },
+  deleteTask: function deleteTask(taskId) {
+    return axios.delete(`${apiBaseUrl}/task/${taskId}`);
+  },
+  addTask: function addTask(newTask) {
+    return axios.post(`${apiBaseUrl}/task`, newTask);
+  },
+};
+
+export default TodoListService;

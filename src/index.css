@@ -21,7 +21,7 @@ ul {
 }
 button {
   border: none;
-  margin: 0;
+  margin: 0 10px 0 0 !important;
   padding: 0;
   width: auto;
   overflow: visible;
@@ -32,6 +32,7 @@ button {
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
   -webkit-appearance: none;
+  
 }
 button::-moz-focus-inner {
   border: 0;
@@ -291,5 +292,7 @@ body {
   opacity: 1;
 }
 
-
+.mr-2{
+  margin-right: 10px;
+}
 
