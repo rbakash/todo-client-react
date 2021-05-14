@@ -33,7 +33,8 @@ function App(props) {
         // Update the server
         todoListService
           .updateTask(id, task)
-          .then((response) => console.log(response.data.message));
+          .then((response) => console.log(response.data.message))
+          .catch((error) => console.error(error));
 
         return { ...task };
       }
@@ -46,7 +47,10 @@ function App(props) {
   // Handle the deletion of the item event
   function deleteTask(id) {
     // Delete it in DB
-    todoListService.deleteTask(id).then((response) => console.log(response));
+    todoListService
+      .deleteTask(id)
+      .then((response) => console.log(response))
+      .catch((error) => console.error(error));
 
     // Filter out the remaining Tasks based on the task Id
     const remainingTasks = tasks.filter((task) => id !== task.id);
@@ -64,7 +68,8 @@ function App(props) {
         // Update the DB
         todoListService
           .updateTask(id, task)
-          .then((response) => console.log(response.data.message));
+          .then((response) => console.log(response.data.message))
+          .catch((error) => console.error(error));
         return { ...task, title: newName };
       }
       // Return the new updated task
@@ -77,12 +82,14 @@ function App(props) {
   // Component mount just like ngOnit in angular, after the component is rendered
   useEffect(() => {
     // Fetch all the todo's and set the state
-    todoListService.getAllTodoTasks().then((res) => {
-      setTasks([...res.data.data]);
-    });
+    todoListService
+      .getAllTodoTasks()
+      .then((res) => {
+        setTasks([...res.data.data]);
+      })
+      .catch((error) => console.error(error));
   }, []);
 
-    
   // To create list of todo's with the given filter
   const taskList = tasks
     .filter(FILTER_MAP[filter])
@@ -105,7 +112,7 @@ function App(props) {
       title={name}
       isPressed={name === filter}
       setFilter={setFilter}
-    /> 
+    />
   ));
 
   // Count the number of the Remaining task in the given category
@@ -118,7 +125,7 @@ function App(props) {
     let newTask = { title: name, isCompleted: 0 };
 
     todoListService.addTask(newTask).then((response) => {
-      newTask.id = response.data.data['insertId'];
+      newTask.id = response.data.data["insertId"];
       // Update the state
       setTasks([...tasks, newTask]);
     });
