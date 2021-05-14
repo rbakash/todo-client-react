@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import todoListService from "./services/todoListService";
 
-// Constant list of filers
+// Constant list of filters
 const FILTER_MAP = {
   All: () => true,
   Active: (task) => !task.isCompleted,
@@ -35,7 +35,7 @@ function App(props) {
           .updateTask(id, task)
           .then((response) => console.log(response.data.message));
 
-        return { ...task, completed: !task.completed };
+        return { ...task };
       }
       return task;
     });
@@ -74,7 +74,7 @@ function App(props) {
     setTasks(editedTaskList);
   }
 
-  // Component mount just like ngOnit in angular
+  // Component mount just like ngOnit in angular, after the component is rendered
   useEffect(() => {
     // Fetch all the todo's and set the state
     todoListService.getAllTodoTasks().then((res) => {
@@ -82,6 +82,7 @@ function App(props) {
     });
   }, []);
 
+    
   // To create list of todo's with the given filter
   const taskList = tasks
     .filter(FILTER_MAP[filter])
@@ -104,7 +105,7 @@ function App(props) {
       title={name}
       isPressed={name === filter}
       setFilter={setFilter}
-    />
+    /> 
   ));
 
   // Count the number of the Remaining task in the given category
